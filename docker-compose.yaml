@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  nginx:
+    image: nginx:latest
+    container_name: production_nginx
+    volumes:
+      - ./datastore/certifications/nginx/nginx-simple-docker/nginx.conf:/etc/nginx/nginx.conf
+      #- ./nginx/error.log:/etc/nginx/error_log.log
+      #- ./nginx/cache/:/etc/nginx/cache
+      - /datastore/certifications/nginx/nginx-simple-docker/certs/:/etc/letsencrypt/
+    environment:
+      - ENV=development
+      - APPLICATION_URL=http://gunicornsimple
+
+    ports:
+      - 80:80
+      - 443:443
+    #networks:
+    #  - my-network
+
+  gunicorn-simple:
+    image: gunicorn-simple
+    container_name: production_gunicorn-simple
+    expose:
+      - "80"
+    #networks:
+    #  - my-network
+
+#networks:
+#    my-network:
