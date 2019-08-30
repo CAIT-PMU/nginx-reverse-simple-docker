@@ -20,9 +20,9 @@ services:
     #networks:
     #  - my-network
 
-  gunicorn-simple:
-    image: gunicorn-simple
-    container_name: gunicorn-simple
+  jupyter-minimal:
+    image: jupyter/minimal-notebook
+    container_name: jupyter-minimal
     environment:
       - GUNICORN_WORKERS=4
       - GUNICORN_ACCESSLOG=-
@@ -32,9 +32,9 @@ services:
     #networks:
     #  - my-network
 
-  gunicorn-simple2:
+  gunicorn-simple-app:
     image: gunicorn-simple
-    container_name: gunicorn-simple2
+    container_name: gunicorn-simple-app
     expose:
       - "80"
 #networks:
