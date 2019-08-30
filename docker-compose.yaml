@@ -2,7 +2,7 @@ version: '3.7'
 services:
   nginx:
     build: ./nginx
-    image: jhenck57/pavementhhub-nginx
+    image: jhenck57/pavementhub-nginx
     container_name: nginx
     volumes:
       #- ./nginx/nginx.conf:/etc/nginx/nginx.conf
