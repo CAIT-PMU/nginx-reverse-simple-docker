@@ -20,9 +20,9 @@ services:
     #networks:
     #  - my-network
 
-  gunicorn-simple:
+  gunicorn-simple1:
     image: gunicorn-simple
-    container_name: gunicorn-simple
+    container_name: gunicorn-simple1
     expose:
       - "80"
     #networks:
