@@ -22,7 +22,7 @@ services:
 
   gunicorn-simple1:
     image: gunicorn-simple
-    container_name: gunicorn-simple1
+    container_name: gunicorn-simple
     environment:
       - GUNICORN_WORKERS=4
       - GUNICORN_ACCESSLOG=-
