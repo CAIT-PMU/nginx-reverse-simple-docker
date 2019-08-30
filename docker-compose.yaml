@@ -1,8 +1,9 @@
 version: '3.7'
 services:
   nginx:
-    image: nginx:latest
-    container_name: production_nginx
+    build: ./nginx
+    image: jhenck57/pavementhhub-nginx
+    container_name: nginx
     volumes:
       #- ./nginx/nginx.conf:/etc/nginx/nginx.conf
       #- ./nginx/error.log:/etc/nginx/error_log.log
