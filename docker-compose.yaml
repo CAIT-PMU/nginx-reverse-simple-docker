@@ -23,6 +23,9 @@ services:
   gunicorn-simple1:
     image: gunicorn-simple
     container_name: gunicorn-simple1
+    environment:
+      - GUNICORN_WORKERS=4
+      - GUNICORN_ACCESSLOG=-
     expose:
       - "80"
     #networks:
