@@ -26,10 +26,12 @@ services:
     environment:
       - GUNICORN_WORKERS=4
       - GUNICORN_ACCESSLOG=-
+    command: "/usr/local/bin/gunicorn", "--config", "/gunicorn.conf", "--log-config", "/logging.conf", "-b", ":8000", "app:app"
     expose:
       - "80"
     #networks:
     #  - my-network
+
   gunicorn-simple2:
     image: gunicorn-simple
     container_name: gunicorn-simple2
