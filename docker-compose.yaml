@@ -20,13 +20,13 @@ services:
     #networks:
     #  - my-network
 
-  gunicorn-simple1:
+  gunicorn-simple:
     image: gunicorn-simple
     container_name: gunicorn-simple
     environment:
       - GUNICORN_WORKERS=4
       - GUNICORN_ACCESSLOG=-
-    command: bash -c "gunicorn app.py -b 0.0.0.0:8000"
+    #command: bash -c "gunicorn app.py -b 0.0.0.0:8000"
     expose:
       - "80"
     #networks:
