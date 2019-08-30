@@ -26,7 +26,7 @@ services:
     environment:
       - GUNICORN_WORKERS=4
       - GUNICORN_ACCESSLOG=-
-    command: "/usr/local/bin/gunicorn", "--config", "/gunicorn.conf", "--log-config", "/logging.conf", "-b", ":8000", "app:app"
+    command: bash -c "gunicorn app.py -b 0.0.0.0:8000"
     expose:
       - "80"
     #networks:
