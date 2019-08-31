@@ -28,7 +28,7 @@ services:
       - GUNICORN_ACCESSLOG=-
     #command: bash -c "gunicorn app.py -b 0.0.0.0:8000"
     expose:
-      - "80:8000"
+      - "80"
     #networks:
     #  - my-network
 
@@ -39,6 +39,6 @@ services:
       - GUNICORN_WORKERS=4
       - GUNICORN_ACCESSLOG=-
     expose:
-      - "80:8000"
+      - "80"
 #networks:
 #    my-network:
