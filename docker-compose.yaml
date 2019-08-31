@@ -17,8 +17,8 @@ services:
     ports:
       - 80:80
       - 443:443
-    #networks:
-    #  - my-network
+    networks:
+      - front-proxy
 
   jupyter-minimal:
     image: jupyter/minimal-notebook
@@ -29,8 +29,8 @@ services:
     #command: bash -c "gunicorn app.py -b 0.0.0.0:8000"
     expose:
       - "80"
-    #networks:
-    #  - my-network
+    networks:
+      - front-proxy
 
   gunicorn-simple-app:
     image: gunicorn-simple
@@ -40,5 +40,5 @@ services:
       - GUNICORN_ACCESSLOG=-
     expose:
       - "80"
-#networks:
-#    my-network:
+networks:
+    front-proxy:
