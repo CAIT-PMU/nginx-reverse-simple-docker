@@ -37,7 +37,7 @@ services:
     depends_on:
       - nginx-proxy
 
-  gunicorn-simple-app:
+  gunicorn-simple:
     image: gunicorn-simple
     container_name: gunicorn-simple-app
     environment:
