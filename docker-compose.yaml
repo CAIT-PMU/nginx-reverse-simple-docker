@@ -14,7 +14,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
       - ENV=development
-      - APPLICATION_URL=http://gunicorn-simple
+      - APPLICATION_URL=http://pavement-hub.pavement.rutgers.edu
 
     ports:
       - 80:80
