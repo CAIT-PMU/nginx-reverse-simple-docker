@@ -1,21 +1,21 @@
 version: '3.7'
+
 services:
   nginx-proxy:
     build: ./nginx
     image: jhenck57/pavementhub-nginx
-    container_name: proxy
+    container_name: front-proxy
     volumes:
       #- ./nginx/nginx.conf:/etc/nginx/nginx.conf
       #- ./nginx/error.log:/etc/nginx/error_log.log
       #- ./nginx/cache/:/etc/nginx/cache
       #- /datastore/certifications/nginx/nginx-simple-docker/certs/:/etc/nginx/certs
       - /etc/nginx/vhost.d
-      #- ./certs:/etc/nginx/certs:ro
+      - ./certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
-      - ENV=development
-      - APPLICATION_URL=http://pavement-hub.pavement.rutgers.edu
-
+      #- ENV=development
+      #- APPLICATION_URL=http://pavement-hub.pavement.rutgers.edu
     ports:
       - 80:80
       - 443:443
@@ -26,12 +26,14 @@ services:
     image: jupyter/minimal-notebook
     container_name: jupyter.minimal
     environment:
-      - VIRTUAL_HOST=gunicorn-simple, pavement-hub.pavement.rutgers.edu, jupyter-minimal
+      VIRTUAL_HOST: jupyter.minimal.local
+      VIRTUAL_PORT: 8888
+      #VIRTUAL_PROTO:
       - GUNICORN_WORKERS=4
       - GUNICORN_ACCESSLOG=-
     #command: bash -c "gunicorn app.py -b 0.0.0.0:8000"
-    expose:
-      - "80"
+    #expose:
+    #  - "80"
     networks:
       - front-proxy
     depends_on:
@@ -41,3 +43,7 @@ services:
 networks:
     front-proxy:
       driver: bridge
+
+volumes:
+    certs:
+      driver: local
