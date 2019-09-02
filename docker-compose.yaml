@@ -11,9 +11,9 @@ services:
       #- ./nginx/cache/:/etc/nginx/cache
       #- /datastore/certifications/nginx/nginx-simple-docker/certs/:/etc/nginx/certs
       - /etc/nginx/vhost.d
-      - ./certs:/etc/nginx/certs:ro
+      #- ./certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
-    environment:
+    #environment:
       #- ENV=development
       #- APPLICATION_URL=http://pavement-hub.pavement.rutgers.edu
     ports:
@@ -25,12 +25,14 @@ services:
   jupyter-minimal:
     image: jupyter/minimal-notebook
     container_name: jupyter.minimal
+    ports:
+      - 8888:8888
     environment:
-      VIRTUAL_HOST: jupyter.minimal.local
+      VIRTUAL_HOST: pavement-hub.pavement.rutgers.edu
       VIRTUAL_PORT: 8888
       #VIRTUAL_PROTO:
-      - GUNICORN_WORKERS=4
-      - GUNICORN_ACCESSLOG=-
+      #GUNICORN_WORKERS: 4
+      #GUNICORN_ACCESSLOG: -
     #command: bash -c "gunicorn app.py -b 0.0.0.0:8000"
     #expose:
     #  - "80"
@@ -44,6 +46,6 @@ networks:
     front-proxy:
       driver: bridge
 
-volumes:
-    certs:
-      driver: local
+#volumes:
+#    certs:
+#      driver: bind
